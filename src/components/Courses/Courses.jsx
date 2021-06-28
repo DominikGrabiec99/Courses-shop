@@ -4,7 +4,7 @@ import bemCssModules from 'bem-css-modules'
 import {default as CursesStyles} from './Courses.module.scss';
 import { StoreContext } from "../../store/StoreProvider";
 
-import Course from "../Content/subcomponents/Course";
+import Course from "./subcomponents/Course";
 
 const block = bemCssModules(CursesStyles)
 

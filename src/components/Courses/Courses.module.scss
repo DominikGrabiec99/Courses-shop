@@ -13,4 +13,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
   }
+
+  ul {
+    list-style-type: none;
+  }
 }
