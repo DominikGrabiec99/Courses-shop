@@ -12,7 +12,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const {user, setUser} = useContext(StoreContext);
 
-  const handfleOnClose = () => setIsModalOpen(false)
+  const handleOnClose = () => setIsModalOpen(false)
 
   const handleOnClick = () => {
     if(Boolean(user)){
@@ -28,7 +28,7 @@ const Header = () => {
       <div className={block('logo-wrapper')}></div>
       <h1 className={block('title')}>Super kursy dla programistów</h1>
       <button onClick={handleOnClick}>{setProperlyLabel}</button>
-      <LoginForm handleOnClose={handfleOnClose} isModalOpen={isModalOpen}/>
+      <LoginForm handleOnClose={handleOnClose} isModalOpen={isModalOpen}/>
     </header>
   )
 }
