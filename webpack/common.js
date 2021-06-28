@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
-        index: path(__dirname, '..', 'src', 'index.js')
+        index:['babel-polyfill', path(__dirname, '..', 'src', 'index.js')]
     },
     output: {
         filename: '[index].[contenthash:6].js',
