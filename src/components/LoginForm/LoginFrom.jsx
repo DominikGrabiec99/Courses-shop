@@ -33,6 +33,7 @@ const LoginForm = ({handleOnClose, isModalOpen}) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    
     const {data, status} = await request.post('/users', {login , password})
 
     if(status === 200){

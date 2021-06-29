@@ -32,7 +32,6 @@ const CoursePopup = ({authors = [], hidePopup, isEditMode = true, isOpenPopup, i
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log('bbb', e)
 
     const courseObejct = {
       authors: formAuthors,
