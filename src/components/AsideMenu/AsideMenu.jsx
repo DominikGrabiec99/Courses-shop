@@ -12,7 +12,7 @@ const AsideMenu = () => {
   
   return ( 
     <section className={block()}>
-      
+      tu będą filty
     </section>
    );
 }

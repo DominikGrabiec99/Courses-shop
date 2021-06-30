@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import StoreProvider from "./store/StoreProvider";
 import Header from "./components/header/Header";
@@ -14,10 +14,10 @@ const App = () => {
     <StoreProvider>
       <Router>
         <Header />
-        {/* <div className="content-wrapper">
-          <AsideMenu />
+        <div className="content-wrapper">
+          <Route exact path="/" render={() => <AsideMenu />}/> 
           <Content />
-        </div> */}
+        </div>
       </Router>
       {/* <Footer /> */}
     </StoreProvider>

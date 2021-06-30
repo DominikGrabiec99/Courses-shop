@@ -25,7 +25,6 @@ const Content = () => {
         {isUsaerLogged && <Route exact path="/my-courses" render={() => <UserCourses />}/>}
         {isAdmin && <Route exact path="/manage-courses" render={() => <AdminPanel />}/>}
         <Route exact path='/:id' render={() => <CourseDescription />}/>
-
       </Switch>
     </main>
    );

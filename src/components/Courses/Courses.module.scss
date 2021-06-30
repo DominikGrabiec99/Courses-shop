@@ -10,8 +10,23 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    
+    @media (min-width:750px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    @media (min-width:1300px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    @media (min-width:1550px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
   }
 
   ul {
