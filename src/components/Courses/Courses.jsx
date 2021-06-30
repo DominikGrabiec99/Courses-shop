@@ -17,7 +17,7 @@ const Courses = () => {
   
   return ( 
     <section className={block()}>
-      <h2 className={block('title')}></h2>
+      <h2 className={block('title')}>Kursy</h2>
       <ul className={block('list')}>
         {coursesElements}
       </ul>
