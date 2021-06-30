@@ -1,14 +1,13 @@
 import React from "react";
 import bemCssModules from 'bem-css-modules';
 import { Link } from "react-router-dom";
-import { default as AsideMenuStyles } from "../AsideMenu.module.scss";
+import { default as HeaderStyles } from "../Header.module.scss";
 
-const block = bemCssModules(AsideMenuStyles)
+const block = bemCssModules(HeaderStyles)
 
 const AdminMenu = () => {
   return ( 
     <div>
-      <p className={block('title')}>Panel administratora</p>
       <nav>
         <ul>
           <li className={block('link')}>

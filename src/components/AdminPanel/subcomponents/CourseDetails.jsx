@@ -11,7 +11,6 @@ const CourseDetails = (props) => {
   const { setCourses } = useContext(StoreContext)
 
   const handleshowPopup = () => setIsOpenPopup(true)
-  console.log(id)
   const hidePopup = (e) => {
     e.preventDefault();
 
@@ -24,10 +23,8 @@ const CourseDetails = (props) => {
       
       const {status} = await request.delete(`/courses/${id}`)
 
-      console.log(status)
       if(status === 200){
         setCourses(prev => prev.filter(course => course.id !== id ))
-        
       }
     } catch (error) {
       console.warn(error)

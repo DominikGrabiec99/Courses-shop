@@ -4,6 +4,7 @@ import {default as CurseStyles} from './Course.module.scss';
 import request from "../../helpers/request";
 import { StoreContext } from "../../store/StoreProvider";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const block = bemCssModules(CurseStyles)
 
@@ -28,7 +29,6 @@ const Course = ({price, title, authors, img, isUserContext = false, id}) => {
 
       if(status === 202){
         setUser(data.user);
-        console.log(history)
         history.push('/my-courses')
       }
 
@@ -41,13 +41,15 @@ const Course = ({price, title, authors, img, isUserContext = false, id}) => {
 
   return ( 
     <li>
-      <article className={block()}>
-      <h3 className={block('title')}>{title}</h3>
-      <img src={img} alt={title}  className={block('image')}/>
-      <p className={block('authors')}>{`Autorzy kursu: ${allAuthors}`}</p>
-      <p className={block('price')}> {`Cena kursu wynosi: ${price} zł`}</p>
-      {isBuyButtonVisible && <button onClick={handleOnClick}>Zakup kurs</button> }
-    </article>
+      <Link to={`/${id}`}>
+        <article className={block()}>
+          <h3 className={block('title')}>{title}</h3>
+          <img src={img} alt={title}  className={block('image')}/>
+          <p className={block('authors')}>{`Autorzy kursu: ${allAuthors}`}</p>
+          <p className={block('price')}> {`Cena kursu wynosi: ${price} zł`} </ p>
+          {isBuyButtonVisible && <button onClick={handleOnClick}>Zakup kurs</button> }
+        </article>
+      </Link>
     </li>
     
    );

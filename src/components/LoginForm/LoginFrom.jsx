@@ -47,21 +47,25 @@ const LoginForm = ({handleOnClose, isModalOpen}) => {
 
   return ( 
     <Modal handleOnClose={handleOnClose} isOpen={isModalOpen} shouldBeCloseOnOutsideClick={true}>
-      {validateMessageComponent}
+      
       <form className={block()} method="post" onSubmit={handleOnSubmit}>
-        <div className={block('row')}>
-          <label htmlFor="">
-            Login: <input className={block('inputValue')} type="text" value={login} onChange={handleOnChangeLogin}/>
-          </label>
-        </div>
-        <div className={block('row')}>
-           <label>
-            Hasło: <input className={block('inputValue')} type="password" value={password} onChange={handleOnChangePassword}/>
-          </label>
-        </div>
-        <div className={block('row')}>
-          <button type="submit">Zaloguj</button>
-          <button type="button" onClick={handleOnCloseModal}>Anuluj</button>
+        <div className={block('wrapperForm')}>
+          <h4  className={block('titleFotmSignin')}>Zaloguj się</h4>
+          {validateMessageComponent}
+          <div >
+            <label className={block('row')}>
+              <input className={block('inputValue')} placeholder="Login" type="text" value={login} onChange={handleOnChangeLogin}/>
+            </label>
+          </div>
+          <div >
+            <label className={block('row')}>
+              <input className={block('inputValue')} placeholder="Hasło" type="password" value={password} onChange={handleOnChangePassword}/>
+            </label>
+          </div>
+          <div className={block('btn-box')}>
+            <button type="submit">Zaloguj</button>
+            <button type="button" onClick={handleOnCloseModal}>Anuluj</button>
+          </div>
         </div>
       </form>
     </Modal>

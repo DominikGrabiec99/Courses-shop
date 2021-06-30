@@ -14,7 +14,6 @@ const AdminPanel = () => {
 
   const handleshowPopup = () => setIsOpenPopup(true)
   const hidePopup = e => {
-    console.log('aaa0' , e)
     e.preventDefault()
     setIsOpenPopup(false)
   }

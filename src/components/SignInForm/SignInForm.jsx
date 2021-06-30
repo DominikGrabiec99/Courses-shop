@@ -12,6 +12,8 @@ const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
   const [loginSignIn, setLoginSignIn] = useState('');
   const [passwordSignIn, setPasswordSignIn] = useState('');
   const [userBudget, setUserBudget] = useState(0);
+  const [nameSignIn, setNameSignIn] = useState('');
+  const [surnameSignIn, setSurnameSignIn] = useState('');
   const [validateMesssageSignIn, setValidateMesssageSignIn] = useState('');
 
   const { setUser } = useContext(StoreContext)
@@ -20,6 +22,8 @@ const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
   const handleonChangeLogin = (e) => setLoginSignIn(e.target.value)
   const handleonChangePassword = (e) => setPasswordSignIn(e.target.value)
   const handleonChangeBudget = (e) => setUserBudget(e.target.value)
+  const handleonChangeName = (e) => setNameSignIn(e.target.value)
+  const handleonChangeSurname = (e) => setSurnameSignIn(e.target.value)
 
   const resetStateSignInInputs = () => {
     setPasswordSignIn('')
@@ -43,9 +47,11 @@ const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
       budget: Number(userBudget),
       courses: [],
       login: loginSignIn,
-      password: passwordSignIn 
+      password: passwordSignIn,
+      name: nameSignIn,
+      surname: surnameSignIn 
     }
-    console.log('aaa')
+
     const {data, status} = await request.put('/users', userObejct)
 
     if (status === 201) {
@@ -62,25 +68,39 @@ const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
 
   return ( 
     <Modal handleOnClose={handleOnCloseSignIn} isOpen={isModalSignInOpen} shouldBeCloseOnOutsideClick={false}>
-      {validateMessageSignInComponent}
-      <form onSubmit={handleOnSubmitSignIn}>
+      
+      <form className={block()} method="put" onSubmit={handleOnSubmitSignIn}>
+        <h4  className={block('titleFotmSignin')}>Zarejestruj się i rozpocznij naukę!</h4>
+        {validateMessageSignInComponent}
         <div>
-          <label>
-            Nazwa używtkownika: <input type="text" onChange={handleonChangeLogin} value={loginSignIn}/>
+          <label className={block('row')}>
+            <input type="text" className={block('inputValue')} placeholder="Nazwa używtkownika" onChange={handleonChangeLogin} value={loginSignIn} />
           </label>
         </div>
         <div>
-          <label>
-            Hasło: <input type="password" onChange={handleonChangePassword} value={passwordSignIn}/>
+          <label className={block('row')}>
+            <input type="text" className={block('inputValue')} placeholder="Imię" onChange={handleonChangeName} value={nameSignIn}/>
           </label>
         </div>
         <div>
-          <label>
-            Dudżet: <input type="number" onChange={handleonChangeBudget} value={userBudget}/>
+          <label className={block('row')}>
+            <input type="text" className={block('inputValue')} placeholder="Nazwisko" onChange={handleonChangeSurname} value={surnameSignIn}/>
           </label>
         </div>
-        <button type="submit">Zarejestruj się</button>
+        <div>
+          <label className={block('row')}>
+            <input type="password" className={block('inputValue')} placeholder="Hasło" onChange={handleonChangePassword} value={passwordSignIn}/>
+          </label>
+        </div>
+        <div>
+          <label className={block('row')}>
+            <input type="number" className={block('inputValue')} placeholder="Dudżet" onChange={handleonChangeBudget} value={userBudget}/>
+          </label>
+        </div>
+        <div className={block('btn-box')}>
+          <button type="submit" >Zarejestruj się</button>
           <button type="button" onClick={handleOnCloseSignIModal}>Anuluj</button>
+        </div>
       </form>
     </Modal>
    );
