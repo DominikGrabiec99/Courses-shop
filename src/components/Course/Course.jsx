@@ -17,25 +17,25 @@ const Course = ({price, title, authors, img, isUserContext = false, id}) => {
 
   const isUserLogged = Boolean(user)
 
-  const handleOnClick = async () => {
-    try {
-      const {data, status} = await request.patch(
-        '/users',
-        {
-          login: user.login,
-          courseId: id
-        }
-      );
+  // const handleOnClick = async () => {
+  //   try {
+  //     const {data, status} = await request.patch(
+  //       '/users',
+  //       {
+  //         login: user.login,
+  //         courseId: id
+  //       }
+  //     );
 
-      if(status === 202){
-        setUser(data.user);
-        history.push('/my-courses')
-      }
+  //     if(status === 202){
+  //       setUser(data.user);
+  //       history.push('/my-courses')
+  //     }
 
-    } catch (error) {
-      console.warn(error)
-    }
-  }
+  //   } catch (error) {
+  //     console.warn(error)
+  //   }
+  // }
 
   const isBuyButtonVisible = isUserLogged && !isUserContext
 

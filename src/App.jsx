@@ -19,7 +19,7 @@ const App = () => {
           <Content />
         </div>
       </Router>
-      {/* <Footer /> */}
+      <Footer />
     </StoreProvider>
   )
 }
