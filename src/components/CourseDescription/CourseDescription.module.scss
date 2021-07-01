@@ -1,4 +1,5 @@
 $paragraph-padding:10px;
+$heightBox: 220px;
 
 .course-description {
   display: flex;
@@ -6,10 +7,63 @@ $paragraph-padding:10px;
   width: 100%;
   margin-top: 10px;
 
+  @media (min-width: 750px) {
+    flex-direction: row;
+  }
+
+   @media (min-width: 1500px) {
+    width: 80%;
+    margin: 0 auto;
+   }
+
+  &__absoluteBlock {
+    display: none;
+    @media (min-width: 750px) {
+      display: block;
+      position: absolute;
+      background-color: rgb(82, 79, 79);
+      width: 100%;
+      height: $heightBox;
+      left: 0;
+    }
+  }
+
+  &__boxHeader {
+   
+    @media (min-width: 750px) {
+      width: 52%;
+      height: 100%;
+      margin-left: 8%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    @media (min-width:1000px) {
+      margin-left: 10%;
+    }
+
+    @media (min-width:1200px) {
+      margin-left: 12.5%;
+    }
+
+    @media (min-width:1500px) {
+      width: 38.5%;
+      margin-left: 22%;
+    }
+  }
+
   &__main-container {
     order: 2; 
     width: 100%;
     border-top: 1px solid black;
+
+    @media (min-width: 750px) {
+      order: 1;
+      border-top: none;
+      padding-right: 1rem;
+      flex-grow: 1;
+    }
   }
 
   &__container-toBuy {
@@ -18,9 +72,31 @@ $paragraph-padding:10px;
    
     
     @media (min-width: 750px) {
-      
+      position: sticky;
+      width: 50%;
+      top: 120px;
+      padding: 1rem;
+      align-self: start;
+      border-radius: 5px;
+      background-color: rgb(43, 41, 41);
+      color: white;
+      box-shadow: 0 0 15px rgb(43, 41, 41);
+    }
+
+    @media (min-width:1200px) {
+      width: 40%;
+    }
+
+    @media (min-width:1500px) {
+      width: 40%;
     }
     
+  }
+
+  &__main-info {
+    @media (min-width: 750px) {
+      margin-top: $heightBox + 10px ;
+    }
   }
 
   &__image {
@@ -67,5 +143,69 @@ $paragraph-padding:10px;
     &:hover{
       background-color: #e71b1b;
     }
+  }
+
+  &__toLearn {
+    margin: 0.8rem 0;
+    padding: 0.4rem;
+    border: 1px solid rgb(240, 223, 193);
+    background-color: rgb(240, 223, 193);
+    border-radius: 10px;
+
+    @media (min-width: 750px) {
+      order: 1;
+      margin-top: 0;
+    }
+  }
+
+  &__description-info {
+    width: 100%;
+  }
+
+  &__check {
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  &__titleToLearn,
+  &__titleToDescription {
+    margin: 5px auto;
+    font-size: 1.5rem;
+  }
+
+  &__boxInformation {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  &__box-description{
+    width: 100%;
+  }
+
+  &__pargInformation {
+    margin: 0.5rem 0;
+  }
+
+  &__pargDescription {
+    width: 100%;
+    margin: 0.5rem 0;
+    text-align: justify;
+  }
+
+  &__pargDescriptionWeigth {
+    font-weight: 700;
+  }
+
+  &__header-title {
+    font-weight: 700;
+    color: #fff;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 5px rgb(177, 171, 171);
+  }
+
+  &__header-shortDiscription {
+    color: #fff;
+    font-size: 1.4rem;
   }
 }
