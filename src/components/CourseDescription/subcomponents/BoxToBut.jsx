@@ -1,10 +1,14 @@
 import React, {useContext, useState, useEffect} from "react";
 import bemCssModules from 'bem-css-modules'
 import { default as CourseDescriptionStyles } from '../CourseDescription.module.scss';
+import { useHistory } from "react-router";
 
 import { StoreContext } from "../../../store/StoreProvider";
 import request from "../../../helpers/request";
-import { useHistory } from "react-router";
+
+import AddToBasketconfirmation from "./AddToBasketconfirmation";
+
+
 
 const block = bemCssModules(CourseDescriptionStyles)
 
@@ -14,14 +18,17 @@ const BoxToBuy = ({course, allAuthors}) => {
 
   const {user, setUser} = useContext(StoreContext);
   const [validataMessageNoUser, setValidataMessageNoUser] = useState(null);
-  
+  const [isModalAddToBasketOpen, setIsModalAddToBasketOpen] = useState(false)
 
+  const handleOnClose = () => setIsModalAddToBasketOpen(false)
+  let timout = null;
+  
   const handleOnClick = async () => {
     try {
 
       if(!user){
         setValidataMessageNoUser('Musisz być zalogowanym')
-        setTimeout( () => setValidataMessageNoUser(null) ,3000)
+        
         return
       }
 
@@ -35,6 +42,7 @@ const BoxToBuy = ({course, allAuthors}) => {
 
       if(status === 202){
         setUser(data.user);
+        setIsModalAddToBasketOpen(true)
       }
 
       if(status === 200){
@@ -52,7 +60,15 @@ const BoxToBuy = ({course, allAuthors}) => {
     }
   }
 
+  useEffect(() => {
+    timout =setTimeout( () => setValidataMessageNoUser(null) ,3000)
+    return () => {
+      clearTimeout(timout)
+    }
+  }, [timout])
+
   return ( 
+    <React.Fragment>
      <div className={block('container-toBuy')}>
         <div>
           <img className={block('image')} src={course.img} alt={course.title} />
@@ -72,6 +88,8 @@ const BoxToBuy = ({course, allAuthors}) => {
         <p className={block('validataMessage')}>{validataMessageNoUser}</p>
         <button className={block('btn-addToBasket')} onClick={handleOnClick}>Dodaj do koszyka</button>
       </div>
+      { user &&<AddToBasketconfirmation handleOnClose={handleOnClose} isModalAddToBasketOpen={isModalAddToBasketOpen} {...course}/>}
+    </React.Fragment>
    );
 }
  

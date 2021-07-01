@@ -1,0 +1,110 @@
+.modal-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+
+  @media (min-width: 1000px) {
+    padding: 2rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  &__box {
+    display: flex;
+    flex-direction:column;
+    
+    @media (min-width: 1000px) {
+      flex-direction: row;
+    }
+  }
+
+  &__img-box{
+    margin: 0 auto;
+  }
+
+  &__image {
+    margin: 0 auto;
+  }
+
+  &__info-box{
+    @media (min-width: 1000px) {
+      margin-left: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &__btn-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    @media (min-width: 1000px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__btn-goToBasket,
+  &__btn-back {
+    margin-bottom: 0;
+    display: block;
+    background-color: #ec5252;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    @media (min-width: 1000px) {
+      padding: 0.6rem 1.4rem;
+    }
+
+    &:hover {
+      background-color: #e71b1b;
+    }
+  }
+
+  &__btn-back {
+    margin-bottom: 0.4rem;
+    background-color: #6657f1;
+
+    @media (min-width: 1000px) {
+      margin-bottom: 0;
+    }
+    &:hover {
+      background-color: #4532f8;
+    }
+  }
+
+  &__btn-link {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+
+    @media (min-width: 1000px) {
+      text-align:start;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  &__bold-span {
+    font-weight: 700;
+  }
+}
