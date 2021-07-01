@@ -218,4 +218,9 @@ $heightBox: 220px;
     font-weight: 700;
     font-size: 1.2rem;
   }
+
+  &__validataMessage {
+    color: red;
+    text-align: center;
+  }
 }

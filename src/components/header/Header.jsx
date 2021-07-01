@@ -47,12 +47,16 @@ const Header = () => {
 
   const setProperlyLabel = Boolean(user) ? 'Wyloguj się' : 'Zaloguj się';
   const setProperlyLabelSignIn = Boolean(user) ? null : <button onClick={handleOnClickSignIn}>Zarejestruj się</button>;
-   const adminMenuComponent = user && user.accessLevel === 1 ? <AdminMenu />: null
+  const adminMenuComponent = user && user.accessLevel === 1 ? <AdminMenu />: null;
+  const basketSapn =  Boolean(user) && user.basket.length > 0 ? <span className={block("basket-span") }>{user.basket.length}</span> : null
+  const setVisibilitybBasket = Boolean(user) ? <i className={"fas fa-shopping-cart " + block("basket") }>{basketSapn}</i> : null;
 
 
   return (
     <header className={block()}>
-      <Link to='/'><h1 className={block('title')}>Super kursy dla programistów</h1></Link>
+      <Link to='/'><h1 className={block('title')}>Świat kursów</h1></Link>
+      <div className={block('container-allBox')}>
+        {setVisibilitybBasket}
       <div className={block('box-button')}>
         <div className={block('box-options-users')}>
           <UserMenu isUserLogged={Boolean(user)}/>
@@ -67,6 +71,7 @@ const Header = () => {
         <div className={block('line')}></div>
         <div className={block('line')}></div>
         <div className={block('line')}></div>
+      </div>
       </div>
       <LoginForm handleOnClose={handleOnClose} isModalOpen={isModalOpen}/>
       <SignInForm handleOnCloseSignIn={handleOnCloseSignIn} isModalSignInOpen={isModalSignInOpen}/>

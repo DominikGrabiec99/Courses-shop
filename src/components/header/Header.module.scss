@@ -36,6 +36,12 @@ $button-color: rgb(80, 80, 233);
     }
   }
 
+  &__container-allBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__box-button {
     display: flex;
     flex-direction: column;
@@ -123,6 +129,24 @@ $button-color: rgb(80, 80, 233);
       font-size: 1.2rem;
       margin: 0 10px;
     }
+  }
+
+  &__basket{
+    justify-self: end;
+    font-size: 1.6rem;
+    margin-right: 1rem;
+    position: relative;
+  }
+
+  &__basket-span {
+    font-size: 1.3rem;
+    position: absolute;
+    bottom: -0.5rem;
+    right: -0.5rem;
+    padding: 0.2rem;
+    border-radius: 10px;
+    background-color: rgb(145, 30, 30);
+    color: #fff;
   }
 
   button {

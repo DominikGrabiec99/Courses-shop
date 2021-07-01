@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { useHistory } from "react-router";
 import request from "../../helpers/request";
 import bemCssModules from 'bem-css-modules'
@@ -29,7 +29,6 @@ const CourseDescription = () => {
 
   useEffect(() => {
     fetchDataId()
-    
   }, [])  
 
   let allAuthors = null;

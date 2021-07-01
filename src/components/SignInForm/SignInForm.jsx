@@ -49,7 +49,8 @@ const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
       login: loginSignIn,
       password: passwordSignIn,
       name: nameSignIn,
-      surname: surnameSignIn 
+      surname: surnameSignIn,
+      basket: []
     }
 
     const {data, status} = await request.put('/users', userObejct)

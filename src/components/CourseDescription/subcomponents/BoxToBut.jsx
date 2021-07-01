@@ -1,10 +1,57 @@
-import React from "react";
+import React, {useContext, useState, useEffect} from "react";
 import bemCssModules from 'bem-css-modules'
 import { default as CourseDescriptionStyles } from '../CourseDescription.module.scss';
+
+import { StoreContext } from "../../../store/StoreProvider";
+import request from "../../../helpers/request";
+import { useHistory } from "react-router";
 
 const block = bemCssModules(CourseDescriptionStyles)
 
 const BoxToBuy = ({course, allAuthors}) => {
+
+  const history = useHistory()
+
+  const {user, setUser} = useContext(StoreContext);
+  const [validataMessageNoUser, setValidataMessageNoUser] = useState(null);
+  
+
+  const handleOnClick = async () => {
+    try {
+
+      if(!user){
+        setValidataMessageNoUser('Musisz być zalogowanym')
+        setTimeout( () => setValidataMessageNoUser(null) ,3000)
+        return
+      }
+
+      const {data, status} = await request.patch(
+        `/users`,
+        {
+          login: user.login,
+          courseId: course.id
+        }
+      );
+
+      if(status === 202){
+        setUser(data.user);
+      }
+
+      if(status === 200){
+        setValidataMessageNoUser('Posiadasz juz ten kurs w koszyku')
+        setTimeout( () => setValidataMessageNoUser(null) ,3000)
+      }
+
+      if(status === 201){
+        setValidataMessageNoUser('Posiadasz juz ten kurs')
+        setTimeout( () => setValidataMessageNoUser(null) ,3000)
+      }
+
+    } catch (error) {
+      console.warn(error)
+    }
+  }
+
   return ( 
      <div className={block('container-toBuy')}>
         <div>
@@ -22,7 +69,8 @@ const BoxToBuy = ({course, allAuthors}) => {
         <div>
           <p className={block('price')}> { course.price} zł</p>
         </div>
-        <button className={block('btn-addToBasket')}>Dodaj do koszyka</button>
+        <p className={block('validataMessage')}>{validataMessageNoUser}</p>
+        <button className={block('btn-addToBasket')} onClick={handleOnClick}>Dodaj do koszyka</button>
       </div>
    );
 }
