@@ -22,9 +22,11 @@ const AdminPanel = () => {
   )
 
   return ( 
-    <section>
-      {coursesElements}
-      <button onClick={handleshowPopup}>Dodaj nowy kurs</button>
+    <section className={block()}>
+      <button onClick={handleshowPopup} className={block('btn-addCourse')}>Dodaj nowy kurs</button>
+      <div className={block('box-courses')}>
+        {coursesElements}
+      </div>
       <CoursePopup isOpenPopup={isOpenPopup} hidePopup={hidePopup} isEditMode={false}/>
     </section>
    );

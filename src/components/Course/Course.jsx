@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const block = bemCssModules(CurseStyles)
 
-const Course = ({price, title, authors, img, isUserContext = false, id}) => {
+const Course = ({price, title, authors, img, isUserContext = false, id, shortDiscription, level, lectures, hours }) => {
   
   const {user, setUser} = useContext(StoreContext);
   const history = useHistory();
@@ -48,9 +48,9 @@ const Course = ({price, title, authors, img, isUserContext = false, id}) => {
           </div>
           <div className={block('information-box')}>
             <h3 className={block('title')}>{title}</h3>
-            <p className={block('description')}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptatibus? Neque cum ea porro nulla omnis corrupti sequi...</p>
+            <p className={block('description')}>{shortDiscription}</p>
             <p className={block('authors')}><span className={block('span--bold')}>Autorzy kursu:</span>  {allAuthors}</p>
-            <p className={block('info')}><span className={block('span--bold')}>Łacznie:</span> 40 h <span>200 wykładów</span> <span>poziom</span></p>
+            <p className={block('info')}><span className={block('span--bold')}>Łacznie:</span> {hours} h, <span>{lectures} wykładów,</span> poziom: <span>{level}</span></p>
           </div>
           <div className={block('price-box')}>
             <p className={block('price')}> {price} zł</ p>

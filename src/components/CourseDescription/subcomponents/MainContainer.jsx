@@ -25,6 +25,7 @@ const MainContainer = ({description, knowledge, title, shortDiscription}) => {
         <div className={block('boxHeader')}>
           <h1 className={block('header-title')}>{title}</h1>
           <p className={block('header-shortDiscription')}>{shortDiscription}</p>
+          <p className={block('info')}><span className={block('span--bold')}>Łacznie:</span> 40 h <span>200 wykładów</span> <span>poziom</span></p>
         </div>
       </article>
         <article className={block('main-info')}>

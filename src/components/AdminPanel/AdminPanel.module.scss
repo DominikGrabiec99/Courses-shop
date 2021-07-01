@@ -1,0 +1,89 @@
+$button-color: rgb(80, 80, 233);
+
+.admin-panel {
+  &__box-courses {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    
+    @media (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (min-width: 1300px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__box-summray {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__box-summray-title {
+    margin: 0.2rem 0;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  &__shortDiscription {
+    text-align: justify;
+  }
+
+  &__box-button {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+
+  &__box-button > button {
+    display: block;
+    background-color: white;
+    cursor: pointer;
+    border: 2px solid $button-color;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px auto;
+    width: 70%;
+    font-size: 1.1rem;
+
+
+    &:hover {
+      background-color: $button-color;
+      color: #fff;
+    }
+
+    @media (min-width: 750px) {
+      font-size: 1.2rem;
+      padding: 10px 15px;
+      margin: 0 10px;
+      width: auto;
+    }
+  }
+
+  &__btn-addCourse {
+    display: block;
+    background-color: white;
+    cursor: pointer;
+    border: 2px solid $button-color;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px auto;
+    width: 40%;
+    font-size: 1.1rem;
+    margin: 1rem auto;
+
+    @media (min-width: 750px) {
+      font-size: 1.2rem;
+      padding: 10px 15px;
+      width: auto;
+    }
+
+  }
+}

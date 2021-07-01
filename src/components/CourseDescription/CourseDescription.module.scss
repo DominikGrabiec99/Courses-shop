@@ -208,4 +208,14 @@ $heightBox: 220px;
     color: #fff;
     font-size: 1.4rem;
   }
+
+  &__info {
+    margin-top: 10px;
+    color: #fff;
+  }
+
+  &__span--bold{
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
 }

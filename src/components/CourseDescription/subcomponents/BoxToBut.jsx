@@ -17,7 +17,7 @@ const BoxToBuy = ({course, allAuthors}) => {
         <div>
           <p className={block('authors')}>Autorzy: { allAuthors}</p>
           <p className={block('language')}>Język: { course.language }</p>
-          <p className={block('last-update')}>Ostania aktualizacja: { course.data }</p>
+          <p className={block('last-update')}>Ostania aktualizacja: { course.date }</p>
         </div>
         <div>
           <p className={block('price')}> { course.price} zł</p>
