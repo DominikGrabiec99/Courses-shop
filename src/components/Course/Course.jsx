@@ -55,11 +55,6 @@ const Course = ({price, title, authors, img, isUserContext = false, id, shortDis
           <div className={block('price-box')}>
             <p className={block('price')}> {price} zł</ p>
           </div>
-          
-          
-          
-          
-          {/* {isBuyButtonVisible && <button onClick={handleOnClick}>Zakup kurs</button> } */}
         </article>
       </Link>
     </li>

@@ -8,6 +8,7 @@ import { StoreContext } from "../../store/StoreProvider";
 import Courses from "../Courses/Courses";
 import UserCourses from "../UserCourses/UserCourses";
 import AdminPanel from "../AdminPanel/AdminPanel";
+import Basket from "../Basket/Basket";
 import CourseDescription from "../CourseDescription/CourseDescription";
 
 const block = bemCssModules(ContentStyles)
@@ -24,6 +25,7 @@ const Content = () => {
         <Route exact path="/" render={() => <Courses />}/>
         {isUsaerLogged && <Route exact path="/my-courses" render={() => <UserCourses />}/>}
         {isAdmin && <Route exact path="/manage-courses" render={() => <AdminPanel />}/>}
+        {isUsaerLogged && <Route exact path="/basket" render={() => <Basket />}/>}
         <Route exact path='/:id' render={() => <CourseDescription />}/>
       </Switch>
     </main>

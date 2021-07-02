@@ -49,7 +49,7 @@ const Header = () => {
   const setProperlyLabelSignIn = Boolean(user) ? null : <button onClick={handleOnClickSignIn}>Zarejestruj się</button>;
   const adminMenuComponent = user && user.accessLevel === 1 ? <AdminMenu />: null;
   const basketSapn =  Boolean(user) && user.basket.length > 0 ? <span className={block("basket-span") }>{user.basket.length}</span> : null
-  const setVisibilitybBasket = Boolean(user) ? <i className={"fas fa-shopping-cart " + block("basket") }>{basketSapn}</i> : null;
+  const setVisibilitybBasket = Boolean(user) ? <Link to='/basket'><i className={"fas fa-shopping-cart " + block("basket") }>{basketSapn}</i></Link> : null;
 
 
   return (

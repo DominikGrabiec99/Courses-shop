@@ -20,7 +20,13 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
-            }
+            },
+            {
+                test: /\.(jpg|png)$/,
+                use: {
+                    loader: 'url-loader',
+                }
+            } 
         ]
     },
     plugins: [

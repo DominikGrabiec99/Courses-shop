@@ -20,7 +20,7 @@ const AddToBasketconfirmation = ({handleOnClose, isModalAddToBasketOpen, img, ti
             </div>
             <div className={block('info-box')}> 
               <p className={block('title')}>{title}</p>
-              <p className={block('authors')}><span className={block('bold-span')}>Autorzy: </span>{allAuthors}</p>
+              <p><span className={block('bold-span')}>Autorzy: </span>{allAuthors}</p>
             </div>
           </div>
           <div className={block('btn-box')}>

@@ -12,7 +12,6 @@ const block = bemCssModules(AdminPanelStyles)
 const CourseDetails = (props) => {
   const [isOpenPopup, setIsOpenPopup] = useState(false)
   const { title, id, img, shortDiscription} = props;
-  console.log(props)
 
   const { setCourses } = useContext(StoreContext)
 
@@ -38,7 +37,7 @@ const CourseDetails = (props) => {
   }
   
   return ( 
-    <details className={block()}>
+    <details>
       <summary className={block('box-summray')}>
         <img src={img} alt={title} />
         <p className={block('box-summray-title')}>{title}</p>

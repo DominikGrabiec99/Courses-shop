@@ -8,8 +8,6 @@ import request from "../../../helpers/request";
 
 import AddToBasketconfirmation from "./AddToBasketconfirmation";
 
-
-
 const block = bemCssModules(CourseDescriptionStyles)
 
 const BoxToBuy = ({course, allAuthors}) => {
@@ -28,7 +26,6 @@ const BoxToBuy = ({course, allAuthors}) => {
 
       if(!user){
         setValidataMessageNoUser('Musisz być zalogowanym')
-        
         return
       }
 
