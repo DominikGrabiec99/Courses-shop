@@ -12,13 +12,15 @@ import Przelewy from '../../img/przelewy24.png'
 import BasketCourse from "./subcomponents/BasketCourse";
 import IsSomethingOnBasket from "./subcomponents/IsSomethingInBasket";
 import EmptyBasket from "./subcomponents/EmptyBasket";
+import { useHistory } from "react-router-dom";
 
 const block = bemCssModules(BasketStyles)
 
 const Basket = () => {
   const {user, setUser,  courses} = useContext(StoreContext)
-  const userBasket = courses.filter(course =>user.basket.includes(course.id))
+  let userBasket = courses.filter(course =>user.basket.includes(course.id))
   const [userBasketCourses, setUserBasketCourses] = useState(userBasket);
+  const [isBought, setIsBought] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -72,6 +74,7 @@ const Basket = () => {
         setUser(data.user);
         userBasket = []
         setUserBasketCourses(userBasket)
+        setIsBought(true)
       }
 
     } catch (error) {
@@ -80,7 +83,7 @@ const Basket = () => {
   }
 
   const elementsOnBasket = userBasketCourses.map(course => <BasketCourse {...course} key={course.id} handleClickDeleteCours={handleClickDeleteCours}/>)
-  const emptyBasket = !userBasketCourses.length && <EmptyBasket />
+  const emptyBasket = !userBasketCourses.length && <EmptyBasket isBought={isBought}/>
 
   const fullbasket = userBasketCourses.length ? ( 
     <div className={block()}>
@@ -111,8 +114,8 @@ const Basket = () => {
 
   return ( 
     <div>
-    {emptyBasket}
-    {fullbasket}
+      {emptyBasket}
+      {fullbasket}
     </div>
    );
 }

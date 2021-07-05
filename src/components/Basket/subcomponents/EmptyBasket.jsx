@@ -5,16 +5,20 @@ import {default as BasketStyles} from '../Basket.module.scss';
 
 const block = bemCssModules(BasketStyles)
 
-const EmptyBasket = () => {
+const EmptyBasket = ({isBought}) => {
   const history = useHistory();
 
-  const handleOnClickBaskToMaiPage = () => {
+  const handleOnClickBaskToMainPage = () => {
     history.push('/')
+  }
+
+  const handleOnClickBaskToMyCourse = () => {
+    history.push('/my-courses')
   }
   return ( 
     <div className={block('empty-div')}>
-      <p className={block('empty-title')}>Twój koszyk jest pusty :( <button onClick={handleOnClickBaskToMaiPage} className={block('empty-btn')}> Wróć do strony głównej</button></p>
-      
+      {!isBought && <p className={block('empty-title')}>Twój koszyk jest pusty :( <button onClick={handleOnClickBaskToMainPage} className={block('empty-btn')}> Wróć do strony głównej</button></p>}
+      {isBought && <p className={block('empty-title')}>Dziękujemy za zakupy :) <button onClick={handleOnClickBaskToMyCourse} className={block('empty-btn')}> Przejdź do swoichn kursów</button></p>}
     </div>
    );
 }

@@ -19,7 +19,6 @@ const BoxToBuy = ({course, allAuthors}) => {
   const [isModalAddToBasketOpen, setIsModalAddToBasketOpen] = useState(false)
 
   const handleOnClose = () => setIsModalAddToBasketOpen(false)
-  let timout = null;
   
   const handleOnClick = async () => {
     try {
@@ -59,11 +58,11 @@ const BoxToBuy = ({course, allAuthors}) => {
   }
 
   useEffect(() => {
-    timout =setTimeout( () => setValidataMessageNoUser(null) ,3000)
-    return () => {
+    const timout = setTimeout( () => setValidataMessageNoUser(null) ,3000)
+    return () => (
       clearTimeout(timout)
-    }
-  }, [timout])
+    )
+  }, [])
 
   return ( 
     <React.Fragment>
