@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import bemCssModules from 'bem-css-modules'
 
 import {default as AdminPanelStyles} from './AdminPanel.module.scss'
@@ -11,6 +11,10 @@ const block = bemCssModules(AdminPanelStyles)
 const AdminPanel = () => {
   const [isOpenPopup, setIsOpenPopup] = useState(false)
   const { courses } = useContext(StoreContext)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleshowPopup = () => setIsOpenPopup(true)
   const hidePopup = e => {

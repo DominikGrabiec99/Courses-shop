@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useEffect} from "react";
 import bemCssModules from 'bem-css-modules'
 
 import {default as CursesStyles} from './Courses.module.scss';
@@ -10,6 +10,10 @@ const block = bemCssModules(CursesStyles)
 
 const Courses = () => {
   const {courses} = useContext(StoreContext)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const coursesElements = courses.map(course => (
     <Course key={course.id} {...course}/>

@@ -4,13 +4,13 @@ import request from "../../helpers/request";
 import bemCssModules from 'bem-css-modules'
 import { default as CourseDescriptionStyles } from './CourseDescription.module.scss';
 
-import BoxToBuy from "./subcomponents/BoxToBut";
+import BoxToBuy from "./subcomponents/BoxToBuy";
 import MainContainer from "./subcomponents/MainContainer";
 
 const block = bemCssModules(CourseDescriptionStyles)
 
 const CourseDescription = () => {
-  const [course, setCourse] = useState('');
+  const [course, setCourse] = useState('')
 
   const histroy = useHistory()
   const id = histroy.location.pathname.slice(1, histroy.location.pathname.length)
@@ -28,6 +28,7 @@ const CourseDescription = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     fetchDataId()
   }, [])  
 

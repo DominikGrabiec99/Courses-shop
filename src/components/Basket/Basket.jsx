@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import bemCssModules from 'bem-css-modules';
 import {default as BasketStyles} from './Basket.module.scss';
 import { StoreContext } from "../../store/StoreProvider";
@@ -19,6 +19,10 @@ const Basket = () => {
   const {user, setUser,  courses} = useContext(StoreContext)
   const userBasket = courses.filter(course =>user.basket.includes(course.id))
   const [userBasketCourses, setUserBasketCourses] = useState(userBasket);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const coursePrice = (course) => {
     return course.price;

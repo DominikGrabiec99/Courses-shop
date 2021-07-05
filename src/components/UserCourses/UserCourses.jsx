@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import bemCssModules from 'bem-css-modules'
 
 import {default as UserCoursesStyles} from './UserCourses.module.scss'
@@ -7,8 +7,14 @@ import { StoreContext } from "../../store/StoreProvider";
 
 const block = bemCssModules(UserCoursesStyles)
 
+
+
 const UserCourses = () => {
   const {user, courses} = useContext(StoreContext)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [])
 
   const buyedCourses = courses.filter(course => user.courses.includes(course.id)).map(course => <Course isUserContext={true} key={course.id} {...course} />)
   return ( 
