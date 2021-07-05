@@ -3,7 +3,7 @@ import bemCssModules from 'bem-css-modules'
 import { default as CourseDescriptionStyles } from '../CourseDescription.module.scss';
 
 const block = bemCssModules(CourseDescriptionStyles);
-const MainContainer = ({description, knowledge, title, shortDiscription}) => {
+const MainContainer = ({description, knowledge, title, shortDiscription, hours, lectures, level}) => {
 
   let allKnowledges =null;
   let descriptionCourse =null;
@@ -25,7 +25,7 @@ const MainContainer = ({description, knowledge, title, shortDiscription}) => {
         <div className={block('boxHeader')}>
           <h1 className={block('header-title')}>{title}</h1>
           <p className={block('header-shortDiscription')}>{shortDiscription}</p>
-          <p className={block('info')}><span className={block('span--bold')}>Łacznie:</span> 40 h <span>200 wykładów</span> <span>poziom</span></p>
+          <p className={block('info')}><span className={block('span--bold')}>Łacznie:</span> {hours} h <span>{lectures} wykładów</span> <span>{level}</span></p>
         </div>
       </article>
         <article className={block('main-info')}>

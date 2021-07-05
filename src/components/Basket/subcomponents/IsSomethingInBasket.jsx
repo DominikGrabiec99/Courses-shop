@@ -4,13 +4,13 @@ import {default as BasketStyles} from '../Basket.module.scss';
 
 const block = bemCssModules(BasketStyles)
 
-const isSomethingOnBasket = ({basketPrice}) => {
+const isSomethingOnBasket = ({basketPrice, handleOnClick}) => {
   return ( 
     <div className={block('right-info')}>
-        <h3>Do zapłaty</h3>
-        <p>Wartośc zamówienia: <span>{ basketPrice}</span></p>
-        <p>Przesyłak: <span>online</span></p>
-        <button>Przedź do kasy</button>
+        <h3 className={block('right-info__title')}>Do zapłaty</h3>
+        <p className={block('right-info__p')}>Wartośc zamówienia: <span className={block('right-info__span--bold')}>{ basketPrice}</span></p>
+        <p className={block('right-info__p')}>Przesyłak: <span className={block('right-info__span--bold')}>online</span></p>
+        <button className={block('right-info__button')} onClick={handleOnClick}>Przedź do kasy</button>
       </div>
    );
 }

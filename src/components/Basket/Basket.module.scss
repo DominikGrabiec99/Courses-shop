@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(231, 229, 229);
+  position: relative;
   @media (min-width:750px) {
     flex-direction: row;
   }
@@ -13,24 +14,86 @@
 
 
   &__right-box {
-    width: 40%;
     margin: 1rem;
+    margin-top: 0;
     margin-left: 0;
+    width: 100%;
+    @media (min-width:750px) {
+      align-self: flex-start;
+      margin-top: 1rem;
+      width: 60%;
+      position: sticky;
+      top: 0;
+      right: 0;
+    }
   }
 
   &__right-info {
     background-color: white;
+    padding: 0.5rem;
+    margin: 0 1rem;
+
+    @media (min-width:750px) {
+      margin: 0;
+    }
+
+    &__title {
+      margin: 0.5rem 0;
+    }
+
+    &__p {
+      margin: 0.3rem 0;
+    }
+
+    &__span--bold {
+      font-weight: 700;
+    }
+
+    &__button {
+      display: block;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.6rem;
+      background-color: rgb(51, 142, 245);
+      width: 70%;
+      border-radius: 3px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin: 1rem auto;
+      margin-bottom: 0;
+
+      &:hover {
+        background-color: rgb(29, 129, 243);
+      }
+    }
   }
 
-  &__right-code {
-    margin-top: 1rem;
+  &__right-code {  
     background-color: white;
+    padding: 0.5rem;
+    margin: 0 1rem;
+    margin-top: 1rem;
+
+    &__title {
+      margin: 0.5rem 0;
+    }
+
+     &__input {
+      outline: none;
+      padding: 0.2rem;
+     }
+
+    @media (min-width:750px) {
+      margin: 0;
+      margin-top: 1rem;
+    }
   }
 
   &__article {
     display: grid;
     grid-template-rows: auto auto;
     margin-top: 0.5rem;
+    
 
     @media (min-width:750px) {
       
@@ -53,6 +116,7 @@
 
   &__image {
     width: 100%;
+
 
     @media (min-width:750px) {}
 
@@ -109,20 +173,55 @@
   &__paymnets {
     margin-top: 1rem;
     background-color: white;
+    padding: 0.5rem;
+    
   }
 
   &__container-articel {
     background-color: white;
+    padding: 0.5rem;
   }
 
   &__img-box {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    margin-top: 1rem;
+    @media (min-width:750px) {
+      justify-content: flex-start;
+    }
   }
 
   &__imageBaskte {
     width: 20%;
+    border: 1px solid rgb(216, 215, 215);
+
+    @media (min-width:750px) {
+      width: 10%;
+      margin-left: 5px;
+    }
+  }
+
+  &__empty-div {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__empty-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    
+  }
+
+  &__empty-btn {
+    border: none;
+    margin-left: 0.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background-color: white;
+    cursor: pointer;
+    text-decoration: underline;
   }
 
   a {

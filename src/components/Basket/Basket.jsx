@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react";
 import bemCssModules from 'bem-css-modules';
 import {default as BasketStyles} from './Basket.module.scss';
 import { StoreContext } from "../../store/StoreProvider";
+import request from "../../helpers/request";
 
 import Mastercard from '../../img/mastercard.png'
 import PayPal from '../../img/paypal.jpg';
@@ -10,11 +11,12 @@ import Przelewy from '../../img/przelewy24.png'
 
 import BasketCourse from "./subcomponents/BasketCourse";
 import IsSomethingOnBasket from "./subcomponents/IsSomethingInBasket";
+import EmptyBasket from "./subcomponents/EmptyBasket";
 
 const block = bemCssModules(BasketStyles)
 
 const Basket = () => {
-  const {user,setUser,  courses} = useContext(StoreContext)
+  const {user, setUser,  courses} = useContext(StoreContext)
   const userBasket = courses.filter(course =>user.basket.includes(course.id))
   const [userBasketCourses, setUserBasketCourses] = useState(userBasket);
 
@@ -26,19 +28,57 @@ const Basket = () => {
     return prev + next;
   }
 
-  const sumPrice = userBasketCourses.map(coursePrice).reduce(sum);
-  console.log(sumPrice)
+  const sumPrice = userBasketCourses.length ? userBasketCourses.map(coursePrice).reduce(sum) : null;
 
-  const handleClickDeleteCours = (e) => {
-    const courseId = e.target.dataset.courseid
-    setUserBasketCourses(prev => prev.filter(course => course.id !== courseId))
+  const handleClickDeleteCours = async (e) => {
+    try {
+      const courseId = e.target.dataset.courseid
+      const {data, status} = await request.patch(
+        `/users`,
+        {
+          login: user.login,
+          courseId: courseId,
+          isAddToBasket: "delete"
+        }
+      );
+
+      if(status === 202){
+        setUser(data.user);
+        setUserBasketCourses(prev => prev.filter(course => course.id !== courseId))
+      }
+
+    } catch (error) {
+      console.warn(error)
+    }
   }
 
-  console.log(user.basket)
+  const handleOnClick = async () => {
+    try {
+
+      const {data, status} = await request.patch(
+        `/users`,
+        {
+          login: user.login,
+          courseId: null,
+          isAddToBasket: "buy"
+        }
+      );
+
+      if(status === 202){
+        setUser(data.user);
+        userBasket = []
+        setUserBasketCourses(userBasket)
+      }
+
+    } catch (error) {
+      console.warn(error)
+    }
+  }
 
   const elementsOnBasket = userBasketCourses.map(course => <BasketCourse {...course} key={course.id} handleClickDeleteCours={handleClickDeleteCours}/>)
+  const emptyBasket = !userBasketCourses.length && <EmptyBasket />
 
-  return ( 
+  const fullbasket = userBasketCourses.length ? ( 
     <div className={block()}>
       <div className={block('wrapper')}>
         <div className={block('container-articel')}>
@@ -56,12 +96,19 @@ const Basket = () => {
         </div>
       </div>
       <div className={block('right-box')}>
-        {userBasketCourses.length && <IsSomethingOnBasket basketPrice={sumPrice}/>}
+        <IsSomethingOnBasket basketPrice={sumPrice} handleOnClick={handleOnClick}/>
         <div className={block('right-code')}>
-          <h2>Poda kod rabatowy (opcjonalnie)</h2>
-          <input type="text" />
+          <h4 className={block('right-code__title')}>Poda kod rabatowy (opcjonalnie)</h4>
+          <input type="text" className={block('right-code__input')} placeholder="kod rabatowy..."/>
         </div>
       </div>
+    </div>
+  ) : null
+
+  return ( 
+    <div>
+    {emptyBasket}
+    {fullbasket}
     </div>
    );
 }

@@ -33,7 +33,8 @@ const BoxToBuy = ({course, allAuthors}) => {
         `/users`,
         {
           login: user.login,
-          courseId: course.id
+          courseId: course.id,
+          isAddToBasket: "toBasket"
         }
       );
 
