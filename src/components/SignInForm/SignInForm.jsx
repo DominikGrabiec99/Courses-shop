@@ -11,7 +11,7 @@ const block = bemCssModules(SignInFormStyles);
 const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
   const [loginSignIn, setLoginSignIn] = useState('');
   const [passwordSignIn, setPasswordSignIn] = useState('');
-  const [userBudget, setUserBudget] = useState(0);
+  const [userBudget, setUserBudget] = useState(1000);
   const [nameSignIn, setNameSignIn] = useState('');
   const [surnameSignIn, setSurnameSignIn] = useState('');
   const [validateMesssageSignIn, setValidateMesssageSignIn] = useState('');
@@ -93,11 +93,11 @@ const SignInForm = ({handleOnCloseSignIn, isModalSignInOpen}) => {
             <input type="password" className={block('inputValue')} placeholder="Hasło" onChange={handleonChangePassword} value={passwordSignIn}/>
           </label>
         </div>
-        <div>
+        {/* <div>
           <label className={block('row')}>
             <input type="number" className={block('inputValue')} placeholder="Dudżet" onChange={handleonChangeBudget} value={userBudget}/>
           </label>
-        </div>
+        </div> */}
         <div className={block('btn-box')}>
           <button type="submit" >Zarejestruj się</button>
           <button type="button" onClick={handleOnCloseSignIModal}>Anuluj</button>

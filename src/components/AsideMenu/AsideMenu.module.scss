@@ -1,33 +1,59 @@
 .aside-menu {
-  padding: 15px;
-  width: 300px;
+  margin-top: 15px;
   background-color: white;
-  border: 1px solid black;
   position: relative;
 
-  // &__nav-wrapper {
-  //   position: sticky;
-  //   top: 80px;
-  // }
+  &__filter-wrapper {
+    display: none;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    @media (min-width:1200px) {
+      display: block;
+    }
+  }
 
-  // &__title {
-  //   margin-top: 20px;
-  // }
+  &__filter-wrapper-visibility {
+    display: block;
+  }
 
-  // &__link {
-  //   margin-top: 10px;
-  //   padding: 3px 5px;
-  //   color: #000;
-  //   text-align: center;
-  //   background-color: lightsalmon;
-  //   cursor: pointer;
+  &__form-filter {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    @media (min-width:1200px) {
+      grid-template-columns: 1fr
+    }
+  }
 
-  //   &:hover {
-  //     background-color: #f00;
-  //   }
-  // }
+  &__div-form-filter{
+    display: flex;
+    flex-direction: column;
+  }
 
-  // ul {
-  //   list-style-type: none;
-  // }
+  &__div-form-filter > h4,
+  &__div-form-filter > label {
+    padding: 0.2rem 0;
+  }
+
+  &__div-form-filter>label {
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-gap: 0.3rem;
+  }
+
+  &__button-form-filter {
+    padding: 0.5rem 0;
+    background-color: rgb(238, 123, 46);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(240, 113, 28);
+    }
+  }
+  
 }
