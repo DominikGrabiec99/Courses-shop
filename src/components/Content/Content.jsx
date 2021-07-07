@@ -10,6 +10,7 @@ import UserCourses from "../UserCourses/UserCourses";
 import AdminPanel from "../AdminPanel/AdminPanel";
 import Basket from "../Basket/Basket";
 import CourseDescription from "../CourseDescription/CourseDescription";
+import CoursesFilter from "../CoursesFilter/CoursesFilter";
 
 const block = bemCssModules(ContentStyles)
 
@@ -23,6 +24,7 @@ const Content = () => {
     <main className={block()}>
       <Switch>
         <Route exact path="/" render={() => <Courses />}/>
+        <Route exact path="/filtre/" render={() => <CoursesFilter />}/>
         {isUsaerLogged && <Route exact path="/my-courses" render={() => <UserCourses />}/>}
         {isAdmin && <Route exact path="/manage-courses" render={() => <AdminPanel />}/>}
         {isUsaerLogged && <Route exact path="/basket" render={() => <Basket />}/>}

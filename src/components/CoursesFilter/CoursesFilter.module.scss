@@ -1,0 +1,35 @@
+.courses {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+
+  @media (min-width:750px) {
+    margin-left: 20px;
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+
+    @media (min-width:750px) {
+      gap: 15px;
+    }
+  }
+
+  &__emptyFilters-message {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}

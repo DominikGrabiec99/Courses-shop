@@ -16,6 +16,7 @@ const App = () => {
         <Header />
         <div className="content-wrapper">
           <Route exact path="/" render={() => <AsideMenu />}/> 
+          <Route exact path="/filtre/" render={() => <AsideMenu />}/> 
           <Content />
         </div>
       </Router>

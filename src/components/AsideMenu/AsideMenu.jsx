@@ -1,5 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { StoreContext } from '../../store/StoreProvider';
+import { Link, useHistory } from "react-router-dom";
 
 import bemCssModules from 'bem-css-modules'
 import { default as AsideMenuStyles } from './AsideMenu.module.scss';
@@ -7,9 +8,12 @@ import { default as AsideMenuStyles } from './AsideMenu.module.scss';
 const block = bemCssModules(AsideMenuStyles)
 
 const AsideMenu = () => {
-  const {courses, setCourses} = useContext(StoreContext);
+  const {courses} = useContext(StoreContext);
+  const history = useHistory();
+  const [trueFilters, setTrueFilters] = useState([]);
 
-  const [allCourses, setAllCourses] = useState(courses);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [filtreCourses, setFiltreCourses] = useState([...courses]);
   const [widthWindow, setWidthWindow] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -320,80 +324,107 @@ const AsideMenu = () => {
     });
   }
 
-  useEffect(() => {
-    setAllCourses([...courses])
-  }, [])
-
-
-  const handleOnSubmitForm = (e) => {
+  const handleOnSubmitForm = async(e) => {
     e.preventDefault();
-    let table = [...courses];
-
-   for (const filter in allFilters) {
+    setTrueFilters([])
+    setFiltreCourses([...courses])
+    for (const filter in allFilters) {
       if(filter === 'level') {
-        if(table.length){
+        if(filtreCourses.length){
           if(allFilters[filter]['basic']){
-            table = table.filter(course => course.level.toLowerCase() === 'podstawowy')
-          } else if(allFilters[filter]['basic']) {
-            table = table.filter(course => course.level.toLowerCase() === 'średnio-zaawansowany')
+            setFiltreCourses(prev => prev.filter(course => course.level.toLowerCase() === 'podstawowy'))
+            setTrueFilters(prev => [...prev, 'basic'])
           } else if(allFilters[filter]['intermediate']) {
-            table = table.filter(course => course.level.toLowerCase() === 'zaawansowany')
+            setFiltreCourses(prev => prev.filter(course => course.level.toLowerCase() === 'średnio-zaawansowany'))
+            setTrueFilters(prev => [...prev, 'intermediate'])
+          } else if(allFilters[filter]['advance']) {
+            setFiltreCourses(prev => prev.filter(course => course.level.toLowerCase() === 'zaawansowany'))
+            setTrueFilters(prev => [...prev, 'advance'])
           }
         }
         
       } else if (filter === 'price') {
-        if(table.length){
+        if(filtreCourses.length){
           if(allFilters[filter]['small']){
-            table = table.filter(course => course.price >= 0 && course.price <= 40)
+            setFiltreCourses(prev =>prev.filter(course => course.price >= 0 && course.price <= 40))
+            setTrueFilters(prev => [...prev, 'small'])
           } else if(allFilters[filter]['mediumPrice']) {
-            table = table.filter(course => course.price > 40 && course.price <= 80)
+            setFiltreCourses(prev =>prev.filter(course => course.price > 40 && course.price <= 80))
+            setTrueFilters(prev => [...prev, 'mediumPrice'])
           } else if(allFilters[filter]['big']) {
-            table = table.filter(course => course.price > 80)
+            setFiltreCourses(prev =>prev.filter(course => course.price > 80))
+            setTrueFilters(prev => [...prev, 'big'])
           }
         }
 
       }  else if (filter === 'time') {
-        if(table.length){
+        if(filtreCourses.length){
           if(allFilters[filter]['short']){
-            table = table.filter(course => course.hours > 0 && course.hours <= 10)
+            setFiltreCourses(prev => prev.filter(course => course.hours > 0 && course.hours <= 10))
+            setTrueFilters(prev => [...prev, 'time'])
           } else if(allFilters[filter]['medium']) {
-            table = table.filter(course => course.hours > 10 && course.hours <= 20)
+            setFiltreCourses(prev => prev.filter(course => course.hours > 10 && course.hours <= 20))
+            setTrueFilters(prev => [...prev, 'medium'])
           } else if(allFilters[filter]['long']) {
-            table = table.filter(course => course.price > 20)
+            setFiltreCourses(prev => prev.filter(course => course.price > 20))
+            setTrueFilters(prev => [...prev, 'long'])
           }
         }
 
       }  else if (filter === 'topic') {
         
-        if(table.length){
+        if(filtreCourses.length){
           if(allFilters[filter]['python']){
-            table = table.filter(course => course.topic.toLowerCase() == "python".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "python".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'python'])
           } else if(allFilters[filter]['javaScript']) {
-            table = table.filter(course => course.topic.toLowerCase() == "javaScript".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "javaScript".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'javaScript'])
           } else if(allFilters[filter]['react']) {
-            table = table.filter(course => course.topic.toLowerCase() == "react".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "react".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'react'])
           } else if(allFilters[filter]['java']) {
-            table = table.filter(course => course.topic.toLowerCase() == "java".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "java".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'java'])
           } else if(allFilters[filter]['git']) {
-            table = table.filter(course => course.topic.toLowerCase() == "git".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "git".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'git'])
           } else if(allFilters[filter]['frontend']) {
-            table = table.filter(course => course.topic.toLowerCase() == "frontend".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "frontend".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'frontend'])
           } else if(allFilters[filter]['backend']) {
-            table = table.filter(course => course.topic.toLowerCase() == "backend".toLowerCase())
+            setFiltreCourses(prev => prev.filter(course => course.topic.toLowerCase() == "backend".toLowerCase()))
+            setTrueFilters(prev => [...prev, 'backend'])
           }
         }
-        
       }
     }
-    setCourses(table)
+
+    setIsSubmit(true)
   }
 
+  useEffect(() => {
+    setFiltreCourses([...courses])
+  }, [courses])
+
+  useEffect(() => {
+    if(isSubmit){
+      const filtersHash = trueFilters.join('#')
+      setIsSubmit(false)
+      history.push({
+        pathname: `/filtre/`,
+        search: `?`,
+        hash: `${filtersHash}`,
+        state: {filtreCourses}
+      })
+
+    }
+  }, [isSubmit])
 
   window.addEventListener('resize', () => setWidthWindow(window.innerWidth))
   const handleOnClickFilters = () => setIsVisible(prev => !prev)
-
   const titleComponent = widthWindow > 1200 ? <h3>Filtruj</h3> :  <h3 onClick={handleOnClickFilters}>Filtruj</h3>
-  
+
   return ( 
     <section className={block()}>
       <div >
@@ -433,7 +464,8 @@ const AsideMenu = () => {
           <label htmlFor="long"><input type="radio" name="time" id="long" value="long" checked={long} onChange={handleLongChange}/>Ponad 20h</label>
           <label htmlFor="noTime"><input type="radio" name="time" id="noTime" value="noTime" checked={noTime} onChange={handleNoTimeChange}/>Brak</label>
         </div>
-        <button type="submit" className={block('button-form-filter')}>Filtruj</button>
+        <button type="click" className={block('button-form-filter')}>Filtruj</button>
+          <button hidden type="submit"></button>
       </form>
       </article>
     </section>
