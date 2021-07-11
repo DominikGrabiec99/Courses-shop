@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext, useState, useEffect, createRef} from "react";
 import bemCssModules from 'bem-css-modules'
 import { default as CourseDescriptionStyles } from '../CourseDescription.module.scss';
 import { useHistory } from "react-router";
@@ -13,6 +13,7 @@ const block = bemCssModules(CourseDescriptionStyles)
 const BoxToBuy = ({course, allAuthors}) => {
 
   const history = useHistory()
+  const componentRef =createRef()
 
   const {user, setUser} = useContext(StoreContext);
   const [validataMessageNoUser, setValidataMessageNoUser] = useState(null);
@@ -58,7 +59,11 @@ const BoxToBuy = ({course, allAuthors}) => {
   }
 
   useEffect(() => {
-    const timout = setTimeout( () => setValidataMessageNoUser(null) ,3000)
+    let timout = null
+    if(componentRef){
+      timout = setTimeout( () => setValidataMessageNoUser(null) ,3000)
+    }
+    
     return () => (
       clearTimeout(timout)
     )
@@ -82,7 +87,7 @@ const BoxToBuy = ({course, allAuthors}) => {
         <div>
           <p className={block('price')}> { course.price} zł</p>
         </div>
-        <p className={block('validataMessage')}>{validataMessageNoUser}</p>
+        <p className={block('validataMessage')} ref={componentRef}>{validataMessageNoUser}</p>
         <button className={block('btn-addToBasket')} onClick={handleOnClick}>Dodaj do koszyka</button>
       </div>
       { user &&<AddToBasketconfirmation handleOnClose={handleOnClose} isModalAddToBasketOpen={isModalAddToBasketOpen} {...course}/>}
